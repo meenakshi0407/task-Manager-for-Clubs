@@ -8,7 +8,7 @@ def get_tasks():
     json_tasks=list(map(lambda x:x.to_json(),tasks))
     return jsonify({"tasks":json_tasks})
 
-@app.route("/create_tasks",methods=["POST"])
+@app.route("/create_task",methods=["POST"])
 def create_task():
     name=request.json.get("name")
     team=request.json.get("team")
@@ -19,6 +19,7 @@ def create_task():
             jsonify({"message": "you must include name,team name and task"}),400,
         )
     new_task=Tasks(name=name,team=team,task=task)
+    
     try:
         db.session.add(new_task)
         db.session.commit()
