@@ -5,6 +5,8 @@ import TaskForm from './TaskForm';
 
 function App() {
   const [tasks,setasks]=useState([])
+  const[isModelOpen,setIsModalOpen]=useState(false)
+  const [currentTask,setcurrentask]=useState({})
 
   useEffect(()=>{
   fetchtasks()
@@ -17,9 +19,34 @@ function App() {
     console.log(data.tasks)
   }
 
+  const closeModal=()=>{
+    setIsModalOpen(false)
+    setcurrentask({})
+  }
+  const openEditModal=(task)=>{
+    if(isModelOpen)return
+    setcurrentask(task)
+    setIsModalOpen(true)
+  }
+ 
+  const openCreatedModal=()=>{
+    if(!isModelOpen) setIsModalOpen(true)
+  }
+  const onUpdate=()=>{
+    closeModal()
+    fetchtasks()
+  }
   return<>
-  <TaskList tasks={tasks}/>
-  <TaskForm/>
+  
+  <TaskList tasks={tasks} updateTask={openEditModal} updateCallback={onUpdate}/>
+  <button onClick={openCreatedModal}>Create New Task</button>
+  {isModelOpen && <div className='modal'>
+    <div className='modal-content'>
+      <span className='close' onClick={closeModal}>&times;</span>
+      <TaskForm existingTask={currentTask}updateCallback={onUpdate} />
+    </div>
+    </div>}
+ 
   </>
 }
 

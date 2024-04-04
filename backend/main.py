@@ -28,25 +28,25 @@ def create_task():
     
     return jsonify({"message":"task created! "}),201
 
-@app.route("/update_task/<int:student_id>",methods=["PATCH"])
-def update_task(student_id):
-    task=Tasks.query.get(student_id)
+@app.route("/update_task/<int:user_id>",methods=["PATCH"])
+def update_task(user_id):
+    task=Tasks.query.get(user_id)
 
     if not task:
         return jsonify({"message":"student not found!"}),404
     
     data=request.json
-    task.name=data.get("name",Tasks.name)
-    task.team=data.get("team",Tasks.team)
-    task.task=data.get("task",Tasks.task)
+    task.name=data.get("name",task.name)
+    task.team=data.get("team",task.team)
+    task.task=data.get("task",task.task)
 
     db.session.commit()
 
-    return jsonify({"message":"student updated"}),200
+    return jsonify({"message":"student updated."}),200
 
-@app.route("/delete_task/<int:student_id>",methods=["DELETE"])
-def delete_task(student_id):
-    task=Tasks.query.get(student_id)
+@app.route("/delete_task/<int:user_id>",methods=["DELETE"])
+def delete_task(user_id):
+    task=Tasks.query.get(user_id)
 
     if not task:
         return jsonify({"message":"student not found!"}),404
