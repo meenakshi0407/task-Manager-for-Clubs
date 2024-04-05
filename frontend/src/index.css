@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family:'Poppins', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  color: rgba(8, 8, 8, 0.87);
+  background-image: url("https://wallpapercave.com/wp/wp8478134.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -78,4 +81,35 @@ input{
   margin-left: 10px;
   border-radius: 5px;
   
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: #d9bbbb;
+}
+
+th, td {
+  border: 1px solid rgb(255, 249, 249);
+ 
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #d9bbbb;
+  color: #1a1a1a;
+}
+
+button {
+  margin-top: 5px;
+  background-color: #915dbc; /*#4CAF50*/
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #45a049;
 }
