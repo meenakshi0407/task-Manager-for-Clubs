@@ -39,7 +39,7 @@ def update_task(user_id):
     task.name=data.get("name",task.name)
     task.team=data.get("team",task.team)
     task.task=data.get("task",task.task)
-
+    
     db.session.commit()
 
     return jsonify({"message":"student updated."}),200

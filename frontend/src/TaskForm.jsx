@@ -13,7 +13,8 @@ const TaskForm=({existingTask={},updateCallback})=>{
         const data={
             name,
             team,
-            task
+            task,
+            status
         }
         const url="http://127.0.0.1:5000/"+ (updating? `update_task/${existingTask.rollno}`: "create_task")
 
@@ -47,6 +48,7 @@ const TaskForm=({existingTask={},updateCallback})=>{
             <label htmlFor="task">Task</label>
             <input type="text" id="task" value={task} onChange={(e)=>setTask(e.target.value)}/>
         </div>
+
         <button type="submit">{updating? "Update":"Create"}</button>
     </form>
     );
