@@ -7,6 +7,12 @@ function App() {
   const [tasks,setasks]=useState([])
   const[isModelOpen,setIsModalOpen]=useState(false)
   const [currentTask,setcurrentask]=useState({})
+  const [inputText, setInputText] = useState('');
+  const [marqueeText, setMarqueeText] = useState('');
+
+  const updateMarquee = () => {
+    setMarqueeText(inputText);
+  };
 
   useEffect(()=>{
   fetchtasks()
@@ -37,7 +43,14 @@ function App() {
     fetchtasks()
   }
   return<>
-  
+  <div className='marqueetag'>
+        
+          <input type="text" value={inputText} onChange={(e) => setInputText(e.target.value)} placeholder="Enter Event Name!" style={{ padding: '8px', marginRight: '10px', width: '200px' }} />
+          <button onClick={updateMarquee} style={{ padding: '8px 15px', backgroundColor: '#007bff', color: '#fff', border: 'none', cursor: 'pointer' }}>Update Event</button>
+      
+          <marquee direction="left" scrollamount="5" style={{ color: 'white' }}>{marqueeText}</marquee>
+      </div>
+
   <TaskList tasks={tasks} updateTask={openEditModal} updateCallback={onUpdate}/>
   <button onClick={openCreatedModal}>Create New Task</button>
   {isModelOpen && <div className='modal'>
