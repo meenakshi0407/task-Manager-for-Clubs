@@ -1,6 +1,16 @@
 from flask import request,jsonify
 from config import db,app
 from models import Tasks
+from flask import  redirect, url_for, render_template, request
+
+
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    if request.method == "POST":
+        user = request.form["nm"]
+        return redirect(url_for("user", usr=user))
+    else:
+	    return render_template("login.html")
 
 @app.route("/tasks", methods=["GET"])
 def get_tasks():
